@@ -115,12 +115,9 @@ final class CategoryTable extends PowerGridComponent
             ->addColumn('description', function (Category $model) {
                 return Str::words(e($model->description), 5);
             })
-            ->addColumn('image', function (Category $model) {
-                return html_entity_decode( '<img src="'. e(Storage::url($model->image)) .'" class="img-thumbnail" />' ); 
-            })
-            ->addColumn('icon', function (Category $model) {
-                return html_entity_decode($model->icon);
-            })
+            // ->addColumn('image', function (Category $model) {
+            //     return html_entity_decode( '<img src="'. e(Storage::url($model->image)) .'" class="img-thumbnail" />' ); 
+            // })
             ->addColumn('created_at_formatted', fn (Category $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
             ->addColumn('updated_at_formatted', fn (Category $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
     }
@@ -159,15 +156,10 @@ final class CategoryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('IMAGE', 'image')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('ICON', 'icon')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
+            // Column::make('IMAGE', 'image')
+            //     ->sortable()
+            //     ->searchable()
+            //     ->makeInputText(),
 
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()
@@ -202,9 +194,10 @@ final class CategoryTable extends PowerGridComponent
     {
        return [
 
+            //  TODO: elaborar un modal para ver el detalle de la categoría creada
             Button::make('show', html_entity_decode('<i class="fa fa-eye" aria-hidden="true"></i>'))
                     ->class('btn btn-outline-success mb-2')
-                    ->route('admin.categories.show', ['category' => 'id'])
+                    ->route('admin.categories.index', ['category' => 'id'])
                     ->method('get'),
 
             Button::make('edit', html_entity_decode('<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'))

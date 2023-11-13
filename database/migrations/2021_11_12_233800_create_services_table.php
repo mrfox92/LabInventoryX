@@ -29,12 +29,10 @@ class CreateServicesTable extends Migration
             ])->default(\App\Models\Service::AVAILABLE);
             $table->timestamp('init_at')->nullable();
             $table->timestamp('finished_at')->nullable();
-            $table->unsignedBigInteger('seller_id');
-            $table->foreign('seller_id')->references('id')->on('sellers');
-            $table->unsignedBigInteger('type_id');
-            $table->foreign('type_id')->references('id')->on('types');
-            $table->unsignedBigInteger('subcategory_id');
-            $table->foreign('subcategory_id')->references('id')->on('subcategories');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
             $table->softDeletes();
         });

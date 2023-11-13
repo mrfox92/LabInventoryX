@@ -21,8 +21,7 @@ class CreateCategory extends Component
         'name'          =>  null,
         'slug'          =>  null,
         'description'   =>  null,
-        'icon'          =>  null,
-        'image'         =>  null
+        // 'image'         =>  null
     ];
 
     public $editForm = [
@@ -30,8 +29,7 @@ class CreateCategory extends Component
         'name'          =>  null,
         'slug'          =>  null,
         'description'   =>  null,
-        'icon'          =>  null,
-        'image'         =>  null
+        // 'image'         =>  null
     ];
 
     public $editImage;
@@ -40,8 +38,7 @@ class CreateCategory extends Component
         'createForm.name'           =>  'required',
         'createForm.slug'           =>  'required|unique:categories,slug',
         'createForm.description'    =>  'required',
-        'createForm.icon'           =>  'required',
-        'createForm.image'          =>  'required|image|max:1024',
+        // 'createForm.image'          =>  'required|image|max:1024',
     ];
     
     protected $validationAttributes = array(
@@ -50,15 +47,13 @@ class CreateCategory extends Component
         'createForm.name'           =>  'nombre',
         'createForm.slug'           =>  'slug',
         'createForm.description'    =>  'descripción',
-        'createForm.icon'           =>  'icono',
-        'createForm.image'          =>  'imagen',
+        // 'createForm.image'          =>  'imagen',
 
         //  edit form
         'editForm.name'             =>  'nombre',
         'editForm.slug'             =>  'slug',
         'editForm.description'      =>  'descripción',
-        'editForm.icon'             =>  'icono',
-        'editImage'                 =>  'imagen'
+        // 'editImage'                 =>  'imagen'
     );
 
     public function mount()
@@ -80,14 +75,13 @@ class CreateCategory extends Component
     {
         $this->validate();
 
-        $imageUrl = $this->createForm['image']->store('categories');
+        // $imageUrl = $this->createForm['image']->store('categories');
 
         Category::create([
             'name'          =>  $this->createForm['name'],
             'slug'          =>  $this->createForm['slug'],
             'description'   =>  $this->createForm['description'],
-            'icon'          =>  $this->createForm['icon'],
-            'image'         =>  $imageUrl
+            // 'image'         =>  $imageUrl
         ]);
 
         //  random value para 
@@ -104,7 +98,7 @@ class CreateCategory extends Component
     {
 
         //  se hace reset de imagen temporal cargada en formulario de edición
-        $this->reset(['editImage']);
+        // $this->reset(['editImage']);
         //  reset a validaciones del modal
         $this->resetValidation();
         //  inicializamos la propiedad con data categoria a editar
@@ -114,8 +108,7 @@ class CreateCategory extends Component
         $this->editForm['name']         = $category->name;
         $this->editForm['slug']         = $category->slug;
         $this->editForm['description']  = $category->description;
-        $this->editForm['icon']         = $category->icon;
-        $this->editForm['image']        = $category->image;
+        // $this->editForm['image']        = $category->image;
         // $this->editForm['image']        = Storage::url($category->image);
         
     }
@@ -125,30 +118,29 @@ class CreateCategory extends Component
         $rules = [
             'editForm.name'         =>  'required',
             'editForm.slug'         =>  'required|unique:categories,slug,' . $this->category->id,
-            'editForm.description'  =>  'required',
-            'editForm.icon'         =>  'required'
+            'editForm.description'  =>  'required'
         ];
 
-        if ($this->editImage)
-        {
-            $rules['editImage'] = 'image|max:1024';
-        }
+        // if ($this->editImage)
+        // {
+        //     $rules['editImage'] = 'image|max:1024';
+        // }
         
         $this->validate($rules);
 
-        if ($this->editImage)
-        {
-            //  borrar la imagen anterior
-            Storage::delete($this->editForm['image']);
-            //  subimos la nueva imagen y reemplazamos valor de editForm['image']
-            $this->editForm['image'] = $this->editImage->store('categories');
-        }
+        // if ($this->editImage)
+        // {
+        //     //  borrar la imagen anterior
+        //     Storage::delete($this->editForm['image']);
+        //     //  subimos la nueva imagen y reemplazamos valor de editForm['image']
+        //     $this->editForm['image'] = $this->editImage->store('categories');
+        // }
 
         //  actualizamos la data del registro
         $this->category->update($this->editForm);
 
         //  reset form modal
-        $this->reset(['editForm', 'editImage']);
+        // $this->reset(['editForm', 'editImage']);
 
         //  emitimos evento para actualizar la data en el datatable
         $this->emitTo('category-table', 'categoryAdded');

@@ -17,45 +17,51 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name'          =>  'Inmuebles',
-                'slug'          =>  Str::slug('Inmuebles'),
-                'description'   =>  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                'icon'          =>  '<i class="fas fa-mobile-alt"></i>'
+                'name'          =>  'Hardware',
+                'slug'          =>  Str::slug('Hardware'),
+                'description'   =>  'Equipos físicos utilizados en el laboratorio, como computadoras, periféricos y componentes, necesarios para el desarrollo y la ejecución de programas y aplicaciones.',
             ],
 
             [
-                'name'          =>  'Negocios y empleos',
-                'slug'          =>  Str::slug('Negocios y empleos'),
-                'description'   =>  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                'icon'          =>  '<i class="fas fa-tv"></i>'
+                'name'          =>  'Redes',
+                'slug'          =>  Str::slug('Redes'),
+                'description'   =>  'Dispositivos y accesorios utilizados para establecer conexiones de red, incluyendo routers, switches, cables y conectores, esenciales para configurar entornos de red y conectividad.',
             ],
 
             [
-                'name'          =>  'Moda',
-                'slug'          =>  Str::slug('Moda'),
-                'description'   =>  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                'icon'          =>  '<i class="fas fa-gamepad"></i>'
+                'name'          =>  'Accesorios',
+                'slug'          =>  Str::slug('Accesorios'),
+                'description'   =>  'Artículos adicionales y pequeños, como cables, adaptadores y kits de limpieza, que complementan y mantienen la funcionalidad del equipo principal.',
             ],
 
             [
-                'name'          =>  'Salud y Belleza',
-                'slug'          =>  Str::slug('Salud y Belleza'),
-                'description'   =>  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                'icon'          =>  '<i class="fas fa-laptop"></i>'
+                'name'          =>  'Software',
+                'slug'          =>  Str::slug('Software'),
+                'description'   =>  'Conjunto de programas, sistemas operativos y herramientas de desarrollo necesarios para crear, editar y ejecutar aplicaciones y programas informáticos.',
             ],
 
             [
-                'name'          =>  'Tiempo Libre',
-                'slug'          =>  Str::slug('Tiempo Libre'),
-                'description'   =>  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                'icon'          =>  '<i class="fas fa-tshirt"></i>'
+                'name'          =>  'Suministros Generales',
+                'slug'          =>  Str::slug('Suministros Generales'),
+                'description'   =>  'Materiales de oficina y papelería, elementos básicos necesarios para la administración y organización del laboratorio.',
             ],
 
             [
-                'name'          =>  'Tecnología',
-                'slug'          =>  Str::slug('Tecnología'),
-                'description'   =>  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                'icon'          =>  '<i class="fas fa-tshirt"></i>'
+                'name'          =>  'Equipamiento Audiovisual',
+                'slug'          =>  Str::slug('Equipamiento Audiovisual'),
+                'description'   =>  'Dispositivos de presentación, como proyectores, pantallas interactivas, altavoces y micrófonos, utilizados para facilitar la comunicación visual y auditiva durante sesiones educativas.',
+            ],
+
+            [
+                'name'          =>  'Herramientas de Pruebas y Medición',
+                'slug'          =>  Str::slug('Herramientas de Pruebas y Medición'),
+                'description'   =>  'Instrumentos para realizar mediciones y pruebas en circuitos, sistemas y hardware, como multímetros y analizadores lógicos.',
+            ],
+
+            [
+                'name'          =>  'Mobiliario de Laboratorio',
+                'slug'          =>  Str::slug('Mobiliario de Laboratorio'),
+                'description'   =>  'Muebles y elementos de almacenamiento diseñados para proporcionar un entorno de trabajo ergonómico y organizado dentro del laboratorio.',
             ]
 
         ];

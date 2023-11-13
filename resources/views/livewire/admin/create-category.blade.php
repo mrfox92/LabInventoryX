@@ -36,19 +36,6 @@
 
             <x-jet-input-error for="createForm.description" />
 
-            <x-jet-label class="mt-1">
-                Icono
-            </x-jet-label>
-            <x-jet-input wire:model.defer="createForm.icon" type="text" class="{{ $errors->has('createForm.icon') ? ' is-invalid' : '' }} mt-1"/>
-
-            <x-jet-input-error for="createForm.icon" />
-
-            <x-jet-label class="mt-1">
-                Imagen
-            </x-jet-label>
-            <x-jet-input wire:model="createForm.image" accept="image/*" type="file" class="{{ $errors->has('createForm.image') ? ' is-invalid' : '' }} mt-1 mb-4" id="{{ $rand }}" />
-
-            <x-jet-input-error for="createForm.image" />
         </x-slot>
 
         <x-slot name="actions">
@@ -66,20 +53,6 @@
         </x-slot>
 
         <x-slot name="content">
-
-            <x-jet-label class="mt-1">
-                Imagen
-            </x-jet-label>
-
-            <div class="text-center my-2">
-                @if ($editImage)
-                    {{-- Se sube a carpeta de archivos temporales --}}
-                    <img src="{{ $editImage->temporaryUrl() }}" class="img-fluid rounded" alt="">
-                @else
-                    {{-- imagen subida para la categoria --}}
-                    <img src="{{ Storage::url($editForm['image']) }}" class="img-fluid rounded" alt="">
-                @endif
-            </div>
 
             <x-jet-action-message on="saved">
                 Categoria creada con éxito
@@ -106,24 +79,10 @@
 
             <x-jet-input-error for="editForm.description" />
 
-            <x-jet-label class="mt-1">
-                Icono
-            </x-jet-label>
-            <x-jet-input wire:model.defer="editForm.icon" type="text" class="{{ $errors->has('editForm.icon') ? ' is-invalid' : '' }} mt-1"/>
-
-            <x-jet-input-error for="editForm.icon" />
-
-            <x-jet-label class="mt-1">
-                Imagen
-            </x-jet-label>
-            <x-jet-input wire:model="editImage" accept="image/*" type="file" class="{{ $errors->has('editImage') ? ' is-invalid' : '' }} mt-1 mb-4" id="{{ $rand }}" />
-
-            <x-jet-input-error for="editImage" />
-
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-danger-button wire:click="update" wire:loading.attr="disabled" wire:target="editImage, update">
+            <x-jet-danger-button wire:click="update" wire:loading.attr="disabled" wire:target="update">
                 Actualizar
             </x-jet-danger-button>
         </x-slot>

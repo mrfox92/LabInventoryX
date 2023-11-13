@@ -79,12 +79,6 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item">
-                                <a href="{{ route('admin.subcategories.index') }}" class="nav-link">
-                                    <span class="icon"><i class='bx bx-right-arrow-alt'></i></span>
-                                    <span class="menu-title">Listado Subcategorias</span>
-                                </a>
-                            </li>
                         </ul>
                     </li>
 
@@ -102,12 +96,6 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item">
-                                <a href="{{ route('admin.communes.index') }}" class="nav-link">
-                                    <span class="icon"><i class='bx bx-right-arrow-alt'></i></span>
-                                    <span class="menu-title">Listado Comunas</span>
-                                </a>
-                            </li>
                         </ul>
                     </li>
 

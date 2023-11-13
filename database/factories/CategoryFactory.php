@@ -18,7 +18,7 @@ class CategoryFactory extends Factory
     {
         return [
             //  categories/nombre_de_la_imagen
-            'image' =>  'categories/' . $this->faker->image('public/storage/categories', 640, 480, null, false)
+            //  'image' =>  'categories/' . $this->faker->image('public/storage/categories', 640, 480, null, false)
         ];
     }
 }

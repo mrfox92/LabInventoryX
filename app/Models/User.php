@@ -64,17 +64,9 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    //  relacion 1 a muchos - customers
-
-    public function customers()
-    {
-        return $this->hasMany(Customer::class);
-    }
-
-    //  relacion 1 a muchos - sellers
-    public function sellers()
-    {
-        return $this->hasMany(Seller::class);
+    //  relacion 1 a muchos - inventories
+    public function inventories() {
+        return $this->hasMany(Inventory::class);
     }
 
     //  relacion 1 a muchos inversa - role

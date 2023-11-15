@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire;
 
-use App\Models\Service;
+use App\Models\Inventory;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
-final class ServiceTable extends PowerGridComponent
+final class InventoryTable extends PowerGridComponent
 {
     use ActionButton;
 
@@ -46,26 +46,11 @@ final class ServiceTable extends PowerGridComponent
     /**
     * PowerGrid datasource.
     *
-    * @return Builder<\App\Models\Service>
+    * @return Builder<\App\Models\Inventory>
     */
     public function datasource(): Builder
     {
-        return Service::query();
-            // ->join('subcategories', function ($subcategories) {
-            //     $subcategories->on('services.subcategory_id', '=', 'subcategories.id');
-            // })
-            // ->join('types', function ($types) {
-            //     $types->on('services.type_id', '=', 'types.id');
-            // })
-            // ->join('sellers', function ($sellers) {
-            //     $sellers->on('services.seller_id', '=', 'sellers.id');
-            // })
-            // ->select([
-            //     'services.*',
-            //     'subcategories.name as subcategory_name',
-            //     'types.name as type_name',
-            //     'sellers.name as seller_name'
-            // ]);
+        return Inventory::query();
     }
 
     /*
@@ -104,44 +89,20 @@ final class ServiceTable extends PowerGridComponent
             ->addColumn('name')
 
            /** Example of custom column using a closure **/
-            ->addColumn('name_lower', function (Service $model) {
+            ->addColumn('name_lower', function (Inventory $model) {
                 return strtolower(e($model->name));
             })
 
             ->addColumn('slug')
             ->addColumn('description')
-            ->addColumn('price')
-            ->addColumn('stock')
-            ->addColumn('space_available')
-            ->addColumn('status', function (Service $model) {
-                return strtoupper(e($model->status == Service::BORRADOR ? 'borrador' : 'publicado'));
-            })
-            ->addColumn('av_status', function (Service $model) {
-
-                $av_status = 'Disponible';
-
-                switch ($model->av_status) {
-                    case Service::AVAILABLE:
-                        $av_status = 'Disponible';
-                        break;
-                    case Service::UNDERWAY:
-                        $av_status = 'En Curso';
-                        break;
-                    case Service::FINISHED:
-                        $av_status = 'Finalizado';
-                        break;
-                }
-
-                return strtoupper( $av_status );
-
-            })
-            ->addColumn('init_at_formatted', fn (Service $model) => Carbon::parse($model->init_at)->format('d/m/Y H:i:s'))
-            ->addColumn('finished_at_formatted', fn (Service $model) => Carbon::parse($model->finished_at)->format('d/m/Y H:i:s'))
-            ->addColumn('seller_id')
-            ->addColumn('type_id')
-            ->addColumn('subcategory_id')
-            ->addColumn('created_at_formatted', fn (Service $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
-            ->addColumn('updated_at_formatted', fn (Service $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
+            ->addColumn('quantity')
+            ->addColumn('status')
+            ->addColumn('add_date_formatted', fn (Inventory $model) => Carbon::parse($model->add_date)->format('d/m/Y H:i:s'))
+            ->addColumn('exp_date_formatted', fn (Inventory $model) => Carbon::parse($model->exp_date)->format('d/m/Y H:i:s'))
+            ->addColumn('user_id')
+            ->addColumn('category_id')
+            ->addColumn('created_at_formatted', fn (Inventory $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
+            ->addColumn('updated_at_formatted', fn (Inventory $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -178,13 +139,7 @@ final class ServiceTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('PRICE', 'price')
-                ->makeInputRange(),
-
-            Column::make('STOCK', 'stock')
-                ->makeInputRange(),
-
-            Column::make('SPACE AVAILABLE', 'space_available')
+            Column::make('QUANTITY', 'quantity')
                 ->makeInputRange(),
 
             Column::make('STATUS', 'status')
@@ -192,39 +147,21 @@ final class ServiceTable extends PowerGridComponent
                 ->searchable()
                 ->makeInputText(),
 
-            Column::make('AV STATUS', 'av_status')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('INIT AT', 'init_at_formatted', 'init_at')
+            Column::make('ADD DATE', 'add_date_formatted', 'add_date')
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),
 
-            Column::make('FINISHED AT', 'finished_at_formatted', 'finished_at')
+            Column::make('EXP DATE', 'exp_date_formatted', 'exp_date')
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),
 
-            // Column::make('SELLER ID', 'seller_id')
-            //     ->makeInputRange(),
-            Column::make('SELLER', 'seller_name')
-                ->sortable()
-                ->searchable(),
-                // ->makeInputText(),
+            Column::make('USER ID', 'user_id')
+                ->makeInputRange(),
 
-            // Column::make('TYPE ID', 'type_id')
-            //     ->makeInputRange(),
-            Column::make('TYPE', 'type_name')
-                ->sortable()
-                ->searchable(),
-
-            // Column::make('SUBCATEGORY ID', 'subcategory_id')
-            //     ->makeInputRange(),
-            Column::make('SUBCATEGORY', 'subcategory_name')
-                ->sortable()
-                ->searchable(),
+            Column::make('CATEGORY ID', 'category_id')
+                ->makeInputRange(),
 
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()
@@ -249,27 +186,26 @@ final class ServiceTable extends PowerGridComponent
     */
 
      /**
-     * PowerGrid Service Action Buttons.
+     * PowerGrid Inventory Action Buttons.
      *
      * @return array<int, Button>
      */
 
-    
+    /*
     public function actions(): array
     {
        return [
+           Button::make('edit', 'Edit')
+               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+               ->route('inventory.edit', ['inventory' => 'id']),
 
-            Button::make('edit', 'Editar')
-                ->class('btn btn-outline-primary mb-2')
-                ->route('admin.users.edit', ['user' => 'id']),
-
-            Button::make('destroy', 'Eliminar')
-                ->class('btn btn-outline-danger mb-2')
-                ->route('admin.users.destroy', ['user' => 'id'])
-                ->method('delete'),
+           Button::make('destroy', 'Delete')
+               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+               ->route('inventory.destroy', ['inventory' => 'id'])
+               ->method('delete')
         ];
     }
-    
+    */
 
     /*
     |--------------------------------------------------------------------------
@@ -280,7 +216,7 @@ final class ServiceTable extends PowerGridComponent
     */
 
      /**
-     * PowerGrid Service Action Rules.
+     * PowerGrid Inventory Action Rules.
      *
      * @return array<int, RuleActions>
      */
@@ -292,7 +228,7 @@ final class ServiceTable extends PowerGridComponent
 
            //Hide button edit for ID 1
             Rule::button('edit')
-                ->when(fn($service) => $service->id === 1)
+                ->when(fn($inventory) => $inventory->id === 1)
                 ->hide(),
         ];
     }

@@ -40,26 +40,10 @@
                         {{-- <li class="nav-item mm-active"> --}}
                         <li class="nav-item">
                             <a href="#" class="collapsed-nav-link nav-link" aria-expanded="true">
-                                <span class="icon">{!! $category->icon !!}</span>
                                 <span class="menu-title">{{ $category->name }}</span>
-                                <span class="badge">{{ count( $category->subcategories ) }}</span>
+                                <!-- TODO: Agregar contador artículos inventario por categoria -->
 
                             </a>
-
-                            <ul class="sidemenu-nav-third-level mm-collapse mm-hide" style="">
-
-                                @foreach ($category->subcategories as $subcategory)
-
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <span class="icon"><i class="bx bx-right-arrow-alt"></i></span>
-                                            <span class="menu-title">{{ $subcategory->name }}</span>
-                                        </a>
-                                    </li>
-
-                                @endforeach
-
-                            </ul>
                         </li>
                     @endforeach
                     

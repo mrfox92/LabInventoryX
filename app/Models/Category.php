@@ -12,12 +12,11 @@ class Category extends Model
     use SoftDeletes;
 
     protected $table = 'categories';
-    protected $fillable = ['name', 'slug', 'description', 'image', 'icon'];
+    protected $fillable = ['name', 'slug', 'description'];
 
-    //  relacion 1 a muchos
-    public function subcategories()
-    {
-        return $this->hasMany(Subcategory::class);
+    // relacion 1 a muchos
+    public function inventories() {
+        return $this->hasMany(Inventory::class);
     }
 
     //  relacion a traves de

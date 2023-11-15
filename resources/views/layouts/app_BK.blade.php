@@ -22,7 +22,7 @@
         <x-jet-banner />
         {{-- llamada a componente de Livewire: Contenido reactivo --}}
         {{-- @livewire('navigation-menu') --}}
-        @livewire('navigation')
+        <!-- @livewire('navigation') -->
 
         <!-- Page Heading -->
         {{-- <header class="d-flex py-3 bg-white shadow-sm border-bottom">
@@ -36,7 +36,7 @@
             {{ $slot }}
         </main>
 
-        @stack('modals')
+        <!-- @stack('modals') -->
 
         @livewireScripts
 

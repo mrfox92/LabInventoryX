@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Storage;
+// use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         //  seeders
         $this->call(CategorySeeder::class);
+        //  artículos inventario
+        $this->call(InventorySeeder::class);
         //  services
         //  $this->call(ServiceSeeder::class);
     }

@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\CommuneController;
+// use App\Http\Controllers\Admin\CommuneController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\InventoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Seller\ServiceController as SellerServiceController;
 use App\Http\Livewire\Admin\ShowCategory;
@@ -39,6 +40,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     Route::resource('/services', ServiceController::class)->names('admin.services');
+
+    Route::resource('/inventories', InventoryController::class)->names('admin.inventories')->middleware('auth');
     
 });
 

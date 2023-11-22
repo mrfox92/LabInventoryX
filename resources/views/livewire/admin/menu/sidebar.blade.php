@@ -65,44 +65,24 @@
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
-                        <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
+
+                    <li class="nav-item {{ request()->routeIs('admin.categories.index') ? ' mm-active' : '' }}">
+                        <a href="{{ route('admin.categories.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bx-right-arrow-alt'></i></span>
-                            <span class="menu-title">Categorización</span>
+                            <span class="menu-title">Categorias</span>
                         </a>
-
-                        <ul class="sidemenu-nav-third-level">
-                            <li class="nav-item {{ request()->routeIs('admin.categories.*') ? ' mm-active' : '' }}">
-                                <a href="{{ route('admin.categories.index') }}" class="nav-link">
-                                    <span class="icon"><i class='bx bx-right-arrow-alt'></i></span>
-                                    <span class="menu-title">Listado Categorias</span>
-                                </a>
-                            </li>
-
-                        </ul>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
-                            <span class="icon"><i class='bx bx-right-arrow-alt'></i></span>
-                            <span class="menu-title">Ubicación</span>
-                        </a>
-
-                        <ul class="sidemenu-nav-third-level">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <span class="icon"><i class='bx bx-right-arrow-alt'></i></span>
-                                    <span class="menu-title">Listado Regiones</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->routeIs('admin.services.index') ? ' mm-active' : '' }}">
                         <a href="{{ route('admin.services.index') }}" class="nav-link">
-                            <span class="icon"><i class='bx bxs-shopping-bag'></i></span>
+                            <span class="icon"><i class='bx bx-right-arrow-alt'></i></span>
                             <span class="menu-title">Servicios</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('admin.inventories.index') ? ' mm-active' : '' }}">
+                        <a href="{{ route('admin.inventories.index') }}" class="nav-link">
+                            <span class="icon"><i class='bx bx-right-arrow-alt'></i></span>
+                            <span class="menu-title">Inventario</span>
                         </a>
                     </li>
                 </ul>

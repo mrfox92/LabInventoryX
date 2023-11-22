@@ -23,16 +23,16 @@ class InventoryController extends Controller
             ],
             [
                 'name'      =>  'Inventario',
-                'url'       =>  'admin.inventory.index'
+                'url'       =>  'admin.inventories.index'
             ],
             [
                 'name'      =>  'Lista artículos',
-                'url'       =>  'admin.inventory.index',
+                'url'       =>  'admin.inventories.index',
                 'active'    =>  true
             ]
         ];
         
-        return view('admin.inventory.index')
+        return view('admin.inventories.index')
                 ->with('title', 'Administración artículos')
                 ->with('breadcrumbs', $breadcrumbs);
     }

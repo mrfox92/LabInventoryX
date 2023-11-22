@@ -50,7 +50,18 @@ final class InventoryTable extends PowerGridComponent
     */
     public function datasource(): Builder
     {
-        return Inventory::query();
+        return Inventory::query()
+            ->join('users', function($users) {
+                $users->on('inventories.user_id', '=', 'users.id');
+            })
+            ->join('categories', function($categories) {
+                $categories->on('inventories.category_id', '=', 'categories.id');
+            })
+            ->select([
+                    'inventories.*',
+                    'users.name as user_name',
+                    'categories.name as category_name'
+                ]);
     }
 
     /*
@@ -93,12 +104,29 @@ final class InventoryTable extends PowerGridComponent
                 return strtolower(e($model->name));
             })
 
-            ->addColumn('slug')
+            // ->addColumn('slug')
             ->addColumn('description')
             ->addColumn('quantity')
-            ->addColumn('status')
-            ->addColumn('add_date_formatted', fn (Inventory $model) => Carbon::parse($model->add_date)->format('d/m/Y H:i:s'))
-            ->addColumn('exp_date_formatted', fn (Inventory $model) => Carbon::parse($model->exp_date)->format('d/m/Y H:i:s'))
+            ->addColumn('status', function (Inventory $model) {
+
+                switch ((int)$model->status) {
+
+                    case 1:
+                        return '<span class="badge bg-primary">UTILIZADO</span>';
+                    case 2: 
+                        return '<span class="badge bg-secondary">NO DISPONIBLE</span>';
+                    case 3:
+                        return '<span class="badge bg-danger">REPARACION</span>';
+                    case 4: 
+                        return '<span class="badge bg-info">PRESTAMO</span>';
+                    case 5:
+                        return '<span class="badge bg-success">DISPONIBLE</span>';
+                    default:
+                        return '<span class="badge bg-success">DISPONIBLE</span>';
+                }
+            })
+            ->addColumn('add_date_formatted', fn (Inventory $model) => ( !empty($model->add_date) ) ? Carbon::parse($model->add_date)->format('d/m/Y') : '<span class="badge bg-secondary">No aplica</span>' )
+            ->addColumn('exp_date_formatted', fn (Inventory $model) => ( !empty($model->exp_date) ) ? Carbon::parse($model->exp_date)->format('d/m/Y') : '<span class="badge bg-secondary">No aplica</span>' )
             ->addColumn('user_id')
             ->addColumn('category_id')
             ->addColumn('created_at_formatted', fn (Inventory $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
@@ -125,50 +153,49 @@ final class InventoryTable extends PowerGridComponent
             Column::make('ID', 'id')
                 ->makeInputRange(),
 
-            Column::make('NAME', 'name')
+            Column::make('NOMBRE', 'name')
                 ->sortable()
                 ->searchable()
                 ->makeInputText(),
 
-            Column::make('SLUG', 'slug')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
+            // Column::make('SLUG', 'slug')
+            //     ->sortable()
+            //     ->searchable()
+            //     ->makeInputText(),
 
-            Column::make('DESCRIPTION', 'description')
-                ->sortable()
-                ->searchable(),
+            // Column::make('DESCRIPTION', 'description')
+            //     ->sortable()
+            //     ->searchable(),
 
-            Column::make('QUANTITY', 'quantity')
+            Column::make('CANTIDAD (Stock)', 'quantity')
                 ->makeInputRange(),
 
-            Column::make('STATUS', 'status')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
+            Column::make('ESTADO', 'status'),
 
-            Column::make('ADD DATE', 'add_date_formatted', 'add_date')
+            Column::make('FECHA INGRESO', 'add_date_formatted', 'add_date')
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),
 
-            Column::make('EXP DATE', 'exp_date_formatted', 'exp_date')
+            Column::make('FECHA EXPIRACIÓN', 'exp_date_formatted', 'exp_date')
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),
 
-            Column::make('USER ID', 'user_id')
-                ->makeInputRange(),
+            // Column::make('USER ID', 'user_id')
+            //     ->makeInputRange(),
+            Column::make('USUARIO', 'user_name'),
 
-            Column::make('CATEGORY ID', 'category_id')
-                ->makeInputRange(),
+            // Column::make('CATEGORY ID', 'category_id')
+            //     ->makeInputRange(),
+            Column::make('CATEGORIA', 'category_name'),
 
-            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
+            Column::make('FECHA CREACIÓN', 'created_at_formatted', 'created_at')
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),
 
-            Column::make('UPDATED AT', 'updated_at_formatted', 'updated_at')
+            Column::make('FECHA ACTUALIZACIÓN', 'updated_at_formatted', 'updated_at')
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),

@@ -2,9 +2,13 @@
 
     @livewire('partials.breadcrumbs', ['breadcrumbs' => $breadcrumbs ?? [], 'title' => $breadcrumbs[0]['title'] ?? 'Home' ])
 
+    <div class="my-4">
+      @livewire('admin.create-inventory')
+    </div>
+
     <div class="mt-2 mb-5">
 
-        <livewire:admin.inventory-table/>
+        <livewire:inventory-table/>
     </div>
 
     <x-slot name="footer">

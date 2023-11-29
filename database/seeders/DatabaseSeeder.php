@@ -22,8 +22,6 @@ class DatabaseSeeder extends Seeder
         //  seeders
         $this->call(CategorySeeder::class);
         //  artículos inventario
-        $this->call(InventorySeeder::class);
-        //  services
-        //  $this->call(ServiceSeeder::class);
+        // $this->call(InventorySeeder::class);
     }
 }

@@ -13,6 +13,22 @@ final class InventoryTable extends PowerGridComponent
 {
     use ActionButton;
 
+    //  configurar listener personalizados
+    protected function getListeners(): array
+    {
+        return array_merge(
+            parent::getListeners(),
+            [
+                'inventoryAdded',
+            ]
+        );
+    }
+
+    public function inventoryAdded()
+    {
+        $this->render();
+    }
+
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -112,21 +128,21 @@ final class InventoryTable extends PowerGridComponent
                 switch ((int)$model->status) {
 
                     case 1:
-                        return '<span class="badge bg-primary">UTILIZADO</span>';
+                        return 'UTILIZADO';
                     case 2: 
-                        return '<span class="badge bg-secondary">NO DISPONIBLE</span>';
+                        return 'NO DISPONIBLE';
                     case 3:
-                        return '<span class="badge bg-danger">REPARACION</span>';
+                        return 'REPARACION';
                     case 4: 
-                        return '<span class="badge bg-info">PRESTAMO</span>';
+                        return 'PRESTAMO';
                     case 5:
-                        return '<span class="badge bg-success">DISPONIBLE</span>';
+                        return 'DISPONIBLE';
                     default:
-                        return '<span class="badge bg-success">DISPONIBLE</span>';
+                        return 'DISPONIBLE';
                 }
             })
-            ->addColumn('add_date_formatted', fn (Inventory $model) => ( !empty($model->add_date) ) ? Carbon::parse($model->add_date)->format('d/m/Y') : '<span class="badge bg-secondary">No aplica</span>' )
-            ->addColumn('exp_date_formatted', fn (Inventory $model) => ( !empty($model->exp_date) ) ? Carbon::parse($model->exp_date)->format('d/m/Y') : '<span class="badge bg-secondary">No aplica</span>' )
+            ->addColumn('add_date_formatted', fn (Inventory $model) => ( !empty($model->add_date) ) ? Carbon::parse($model->add_date)->format('d/m/Y') : 'No aplica' )
+            ->addColumn('exp_date_formatted', fn (Inventory $model) => ( !empty($model->exp_date) ) ? Carbon::parse($model->exp_date)->format('d/m/Y') : 'No aplica' )
             ->addColumn('user_id')
             ->addColumn('category_id')
             ->addColumn('created_at_formatted', fn (Inventory $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
@@ -184,7 +200,7 @@ final class InventoryTable extends PowerGridComponent
 
             // Column::make('USER ID', 'user_id')
             //     ->makeInputRange(),
-            Column::make('USUARIO', 'user_name'),
+            Column::make('USUARIO REGISTRO', 'user_name'),
 
             // Column::make('CATEGORY ID', 'category_id')
             //     ->makeInputRange(),

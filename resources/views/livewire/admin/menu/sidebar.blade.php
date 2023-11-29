@@ -2,7 +2,9 @@
 <div class="sidemenu-area">
     <div class="sidemenu-header">
         <a href="{{ url('/') }}" class="navbar-brand d-flex align-items-center">
-            <img src="{{ url('assets/img/small-logo.png') }}" alt="image">
+            {{-- <img src="{{ url('assets/img/small-logo.png') }}" alt="image"> --}}
+            <img width="70" height="70" class="img-fluid" src="{{ url('assets/img/logo/logo.png') }}" alt="image">
+            {{-- <img width="150" height="70" class="img-fluid" src="{{ url('assets/img/logo/logo1.png') }}" alt="image"> --}}
             <span>{{ config('app.name', 'Laravel') }}</span>
         </a>
 
@@ -61,7 +63,7 @@
             <li class="nav-item">
                 <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
                     <span class="icon"><i class='bx bx-menu'></i></span>
-                    <span class="menu-title">Mantenedores</span>
+                    <span class="menu-title">Laboratorio</span>
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
@@ -70,13 +72,6 @@
                         <a href="{{ route('admin.categories.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bx-right-arrow-alt'></i></span>
                             <span class="menu-title">Categorias</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item {{ request()->routeIs('admin.services.index') ? ' mm-active' : '' }}">
-                        <a href="{{ route('admin.services.index') }}" class="nav-link">
-                            <span class="icon"><i class='bx bx-right-arrow-alt'></i></span>
-                            <span class="menu-title">Servicios</span>
                         </a>
                     </li>
                     <li class="nav-item {{ request()->routeIs('admin.inventories.index') ? ' mm-active' : '' }}">
@@ -88,36 +83,6 @@
                 </ul>
             </li>
 
-            <li class="nav-item">
-                <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
-                    <span class="icon"><i class='bx bx-envelope'></i></span>
-                    <span class="menu-title">Categorias</span>
-                    {{-- <span class="badge">3</span> --}}
-                </a>
-
-                <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
-                        <a href="app-email.html" class="nav-link">
-                            <span class="icon"><i class='bx bxs-inbox'></i></span>
-                            <span class="menu-title">Inbox</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="email-read.html" class="nav-link">
-                            <span class="icon"><i class='bx bxs-badge-check'></i></span>
-                            <span class="menu-title">Read</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="email-compose.html" class="nav-link">
-                            <span class="icon"><i class='bx bx-send'></i></span>
-                            <span class="menu-title">Compose</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
         </ul>
     </div>
 </div>

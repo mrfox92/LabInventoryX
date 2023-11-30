@@ -179,9 +179,10 @@ final class InventoryTable extends PowerGridComponent
             //     ->searchable()
             //     ->makeInputText(),
 
-            // Column::make('DESCRIPTION', 'description')
-            //     ->sortable()
-            //     ->searchable(),
+            Column::make('DESCRIPCIÓN', 'description')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
 
             Column::make('CANTIDAD (Stock)', 'quantity')
                 ->makeInputRange(),

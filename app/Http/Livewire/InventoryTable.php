@@ -234,21 +234,26 @@ final class InventoryTable extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    /*
+    
     public function actions(): array
     {
        return [
-           Button::make('edit', 'Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('inventory.edit', ['inventory' => 'id']),
+           //  TODO: elaborar un modal para ver el detalle de la categoría creada
+           Button::make('show', html_entity_decode('<i class="fa fa-eye" aria-hidden="true"></i>'))
+                ->class('btn btn-outline-success mb-2')
+                ->route('admin.inventories.index', ['inventory' => 'id'])
+                ->method('get'),
 
-           Button::make('destroy', 'Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('inventory.destroy', ['inventory' => 'id'])
-               ->method('delete')
+            Button::make('edit', html_entity_decode('<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'))
+                ->class('btn btn-outline-primary mb-2')
+                ->emit('edit', ['inventory' => 'id']),
+
+            Button::make('destroy', html_entity_decode('<i class="fa fa-trash-o" aria-hidden="true"></i>'))
+                ->class('btn btn-outline-danger mb-2')
+                ->emit('deleteCategory', ['inventory' => 'id']),
         ];
     }
-    */
+    
 
     /*
     |--------------------------------------------------------------------------

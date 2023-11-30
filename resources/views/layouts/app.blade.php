@@ -15,7 +15,7 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
+        <link rel="icon" type="image/png" href="{{ asset('assets/img/logo/logo.png') }}">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">

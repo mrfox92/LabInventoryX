@@ -2,9 +2,7 @@
 <div class="sidemenu-area">
     <div class="sidemenu-header">
         <a href="{{ url('/') }}" class="navbar-brand d-flex align-items-center">
-            {{-- <img src="{{ url('assets/img/small-logo.png') }}" alt="image"> --}}
             <img width="70" height="70" class="img-fluid" src="{{ url('assets/img/logo/logo.png') }}" alt="image">
-            {{-- <img width="150" height="70" class="img-fluid" src="{{ url('assets/img/logo/logo1.png') }}" alt="image"> --}}
             <span>{{ config('app.name', 'Laravel') }}</span>
         </a>
 

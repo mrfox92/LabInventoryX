@@ -93,16 +93,16 @@
     </x-jet-form-section>
 
     {{-- modal --}}
-    {{-- <x-jet-dialog-modal wire:model="editForm.open">
+    <x-jet-dialog-modal wire:model="editForm.open">
 
         <x-slot name="title">
-            Editar categoría
+            Editar artículo inventario
         </x-slot>
 
         <x-slot name="content">
 
             <x-jet-action-message on="saved">
-                Categoria creada con éxito
+                artículo inventario actualizado con éxito
             </x-jet-action-message>
 
             <x-jet-label class="mt-1">
@@ -126,6 +126,53 @@
 
             <x-jet-input-error for="editForm.description" />
 
+            <x-jet-label class="mt-1">
+                Cantidad (stock)
+            </x-jet-label>
+            <x-jet-input wire:model.defer="editForm.quantity" type="text" class=" {{ $errors->has('editForm.quantity') ? ' is-invalid' : '' }} mt-1"/>
+
+            <x-jet-input-error for="editForm.quantity" />
+
+            <x-jet-label for="options" class="mt-1">
+                Estado
+            </x-jet-label>
+
+            <select id="statusOptions" wire:model.defer="editForm.status" class="form-control {{ $errors->has('editForm.status') ? ' is-invalid' : '' }} my-1">
+                <option value="">Seleccione una opción...</option>
+                @foreach($statusOptions as $i => $value)
+                    <option value="{{ $i }}">{{ $value }}</option>
+                @endforeach
+            </select>
+
+            <x-jet-input-error for="editForm.status" />
+
+            <x-jet-label class="mt-1">
+                Fecha ingreso (opcional)
+            </x-jet-label>
+            <x-jet-input wire:model.defer="editForm.add_date" type="date" class=" {{ $errors->has('editForm.add_date') ? ' is-invalid' : '' }} mt-1"/>
+
+            <x-jet-input-error for="editForm.add_date" />
+
+            <x-jet-label class="mt-1">
+                Fecha vencimiento (opcional)
+            </x-jet-label>
+            <x-jet-input wire:model.defer="editForm.exp_date" type="date" class=" {{ $errors->has('editForm.exp_date') ? ' is-invalid' : '' }} mt-1"/>
+
+            <x-jet-input-error for="editForm.exp_date" />
+
+            <x-jet-label for="category_id" class="mt-1">
+                Categoria
+            </x-jet-label>
+
+            <select id="category_id" wire:model.defer="editForm.category_id" class="form-control {{ $errors->has('editForm.category_id') ? ' is-invalid' : '' }} mt-1 mb-3">
+                <option value="">Seleccione una categoria...</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+
+            <x-jet-input-error for="editForm.category_id" />
+
         </x-slot>
 
         <x-slot name="footer">
@@ -134,6 +181,6 @@
             </x-jet-danger-button>
         </x-slot>
 
-    </x-jet-dialog-modal> --}}
+    </x-jet-dialog-modal>
 
 </div>

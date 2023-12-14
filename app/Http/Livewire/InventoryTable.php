@@ -126,7 +126,6 @@ final class InventoryTable extends PowerGridComponent
             ->addColumn('status', function (Inventory $model) {
 
                 switch ((int)$model->status) {
-
                     case 1:
                         return 'UTILIZADO';
                     case 2: 
